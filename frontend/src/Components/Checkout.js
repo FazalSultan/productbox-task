@@ -16,13 +16,22 @@ const Checkout = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Your Cart</h2>
       <ul>
         {cart.map((item, index) => (
-          <li key={index}>
-            {item.name} - ${item.price}{" "}
-            <button onClick={() => removeFromCart(index)}>Remove</button>
+          <li key={index} style={{listStyleType: 'none'}}>
+            <div class="card">
+              <div class="card-body">{item.name} - ${item.price}{" "}</div>
+            </div>
+            
+            <button
+              onClick={() => removeFromCart(index)}
+              className="btn btn-outline-danger"
+              style={{marginTop: '8px'}}
+            >
+              Remove
+            </button>
           </li>
         ))}
       </ul>

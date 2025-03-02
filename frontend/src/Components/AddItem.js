@@ -12,13 +12,16 @@ const AddItem = () => {
       body: JSON.stringify({ name, price }),
     })
       .then((response) => response.json())
-      .then((data) => alert("Item added successfully!"));
+      .then(
+        (data) =>
+        alert("Item added successfully!")
+      );
   };
 
   return (
     <>
       <div className="fluid-container mt-5">
-        <div className="container bg-danger justify-content-center">
+        <div className="container  justify-content-center">
           <div className="maintitile ">
             <h2>Add a New Item</h2>
           </div>
@@ -42,11 +45,10 @@ const AddItem = () => {
               onChange={(e) => setPrice(e.target.value)}
             />
             <button type="submit" class="btn btn-outline-primary">
-              Primary
+              Add Item
             </button>
           </form>
         </div>
-        <div className="container formcontainer"></div>
       </div>
     </>
   );

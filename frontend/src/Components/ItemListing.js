@@ -5,8 +5,8 @@ const ItemListing = () => {
 
   useEffect(() => {
     fetch("http://localhost:3000/items")
-      .then(response => response.json())
-      .then(data => setItems(data));
+      .then((response) => response.json())
+      .then((data) => setItems(data));
   }, []);
 
   const addToCart = (item) => {
@@ -18,13 +18,16 @@ const ItemListing = () => {
 
   return (
     <div>
-      <h2>Items for Sale</h2>
-      <div>
-        {items.map(item => (
+      <div className="container">
+        <h2>Items for Sale</h2>
+        {items.map((item) => (
           <div key={item.id}>
-            <h3>{item.name}</h3>
-            <p>Price: ${item.price}</p>
-            <button onClick={() => addToCart(item)}>Add to Cart</button>
+            <div class="card">
+              <div class="card-body">
+                {item.name} <br /> Price: ${item.price}
+              </div>
+            </div>
+            <button className="btn btn-outline-primary" onClick={() => addToCart(item)} style={{marginTop: '8px'}}>Add to Cart</button>
           </div>
         ))}
       </div>
