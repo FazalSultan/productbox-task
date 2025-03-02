@@ -1,97 +1,115 @@
-Productbox Frontend Code Challenge
-==================================
+# RandoStore - ProductBox Frontend Code Challenge
 
-Hello! Your task is to create RandoStore; an online store where anyone can put up any random item up for sale and anyone else can buy it.
+Welcome to RandoStore! This project is an online store where users can add items for sale, browse items, and manage their cart. Below are the instructions for setting up and running the backend and frontend servers, as well as connecting them.
 
-Overview
---------
-I have provided you with a simple [NodeJS](https://nodejs.org) application server for item additions and listing. This app does two things:
+---
 
-- Hosts static content from the 'static' directory
-- Serves a JSON REST API for [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations on items stored in memory
+## Project Overview
+- **Backend**: A Node.js application server serving REST APIs for CRUD operations on items stored in memory.
+- **Frontend**: A React-based web application for the user interface.
 
-I would like you to build four pages:
+---
 
-- A page for listing all items that you can add to your cart
-- A page to view all the items that you've checked out
-- A page that allows you to add new items
-- A homepage that allows you to navigate to the last three pages
+## Prerequisites
+- **Node.js** (version 14 or above)
+- **npm** (Node package manager)
+- **Git** (for cloning the repository)
 
-I've provided a placeholder for these four pages in the 'static' directory. In addition you need to add a cart to the top of EACH page that shows how many items have been added to cart. Once the cart is clicked it should take you to the checkout page where you can see all the chosen items.
+---
 
-You have to use one of the Javascript Frameworks at the frontend for this task. If specified in the email which framework to use, please use that instead.
-
-In terms of design & layout, that's entirely up to you :). I suggest you use Bootstrap or Skeleton since it's very simple and looks elegant. I would recommend you use whatever you're most comfortable with.
-
-Getting Started
----------------
-Install the package dependencies by running the following command: `npm install`
-
-Once the dependancies are installed, you can start the application server by running: `npm start`
-
-Once the server is running, you can access the start page (index.html) by opening your browser to `http://localhost:3000`
-
-REST API
---------
-The Items JSON REST API is exposed at `http://localhost:3000/items`
-
-On server start, item data is read into memory from init_data.json. All subsequent actions are done against this memory store. Stopping and starting the server will re-initialize data from `init_data.json`.
-
-API Endpoints:
-```
-/items/
-- HTTP GET: returns array of all items
-- HTTP POST: creates a new item, returns the created item data
-/items/:id
-- HTTP GET: returns the item with given id (numeric, auto-incrementing). HTTP 404 if item not found
-- HTTP DELETE: removes the items with given id, returns nothing (HTTP 204)
-```
-Here is an example of results returned from HTTP GET on /items:
-```
-[{"id":1,"name":"King Size Bed","price":"300","img":"./img/bed.jpg"},
-{"id":2,"name":"Comfy Slippers","price":"15","img":"./img/slippers.jpg"},
-{"id":3,"name":"CD Rack","price":"100","img":"./img/rack.jpg"},
-{"id":4,"name":"Glow Stick Bundle","price":"10","img":"./img/sticks.jpg"},
-{"id":5,"name":"Cookie Jar","price":"25","img":"./img/cookies.jpg"}]
+## Setting Up the Project
+### Clone the Repository
+```bash
+git clone https://github.com/FazalSultan/productbox-task.git
+cd productbox-task
 ```
 
-You must have noticed that from the top endpoints there is no mention of a cart. This is because I want you to implement the cart entirely in the front end. I suggest that you use [browser local storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
+---
 
-Requirements
-------------
-At a minimum, there are 5 things I need to see:
+## Backend Setup
+### Install Dependencies
+```bash
+cd backend
+npm install
+```
 
-- You should be able to add items through the front end application
-- A list of all the items on the items page
-- The checkout page should have all the items that you chose to checkout
-- The number of items in cart is persistant amongst different browser tabs
-- Decent design/layout of content
-- I will be examine your code for readability, architectural decisions, and modularity. This application is a simple one and doesn't require expertise to build, that being said, - - I'll be grading how well you built it not just if you did it. Communication is key, thus if/when you meet with us, be prepared to talk about why and how you built your interfaces.
+### Start the Backend Server
+```bash
+npm start
+```
+This will start the backend server at `http://localhost:3000`.
 
-Design isn't a point I'm concerned about here, so I suggest you just make it usable or just organized and not spend too much time on it.
+### API Endpoints
+1. **GET /items**: Retrieve all items.
+2. **POST /items**: Add a new item.
+3. **GET /items/:id**: Retrieve an item by ID.
+4. **DELETE /items/:id**: Delete an item by ID.
 
-You should be able to finish this in 4-8 hours, I will give you 5 days to do this. I cannot fairly judge how much time you spent on this project but please don't spend more than 12 hours on this project.
+---
 
-Idea inspiration
-----------------
-If you have additional time after completing the requirements (I think you should), then I'd love to see what else you can do. Here are some ideas to get you started (but please don't limit yourself to these!).
+## Frontend Setup
+### Install Dependencies
+```bash
+cd ../frontend
+npm install
+```
 
-- Add Items form validation
-- Automated testing for example [Protractor](https://www.protractortest.org/)
-- Sorting/Searching of items
-- Optimize assets (minimize and/or bundle css/js)
-- Dynamically load items when they're added to backend (no need to refresh)
+### Start the Frontend Server
+```bash
+npm start
+```
+This will start the frontend server at `http://localhost:3001`.
 
-To be perfectly clear, I don't expect that anyone could complete all of these. This is simply a list of ideas to inspire you.
+---
 
-Submission
-----------
-Fork this repo or create a new public repo and then send the link to waleed@productbox.dev with the subject title "Frontend Code Challenge"
+## Connecting Frontend with Backend
+### Update the API URL in the Frontend
+In the frontend project, ensure that the API calls are pointing to the backend server:
 
-Questions / Problems / Stuck?
------------------------------
-Email me waleed@productbox.dev
+1. Open the file where the API URLs are defined (e.g., `src/api.js` or similar).
+2. Set the base URL to:
+   ```javascript
+   const BASE_URL = "http://localhost:3000/items";
+   ```
+3. Use this `BASE_URL` for all API requests.
 
-License
--------
-I have licensed this project under the MIT license so that you may use this for a portfolio piece (or anything else!).
+---
+
+## Project Features
+### Homepage
+- **Navigation**: Links to Add Item, Item Listing, and Checkout pages.
+- **Cards**: Each card links to a specific page (e.g., Add Item, View Items, Checkout).
+
+### Add Item
+- Add a new item with a name, price, and image.
+
+### Item Listing
+- View all items available for sale.
+
+### Checkout
+- View all items added to the cart.
+
+### Cart
+- Displayed on all pages, showing the number of items in the cart. Clicking it redirects to the Checkout page.
+
+---
+
+## Deployment Notes
+To deploy the application, ensure both the backend and frontend are hosted and connected appropriately. Adjust the API base URL in the frontend to match the deployed backend's URL.
+
+---
+
+## License
+This project is licensed under the MIT License. Feel free to use and modify it as needed.
+
+---
+
+## Troubleshooting
+- **Backend not starting**: Ensure Node.js is installed and dependencies are installed correctly.
+- **Frontend not connecting to backend**: Double-check the API base URL configuration.
+- **CORS issues**: Ensure `cors` middleware is enabled in the backend.
+  ```javascript
+  const cors = require("cors");
+  app.use(cors());
+  ```
+
